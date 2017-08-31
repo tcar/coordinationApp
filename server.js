@@ -21,7 +21,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session())
-
+console.log(session.cookie)
 app.use(routes)
 
 
