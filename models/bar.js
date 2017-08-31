@@ -5,7 +5,11 @@ const Schema = mongoose.Schema
 const barSchema = new Schema({
     name: String,
     id:String,
-    going:Number,
+    location:String,
+    going:{
+        type:Number,
+        default:0
+    },
     users:[{
         type:Schema.Types.ObjectId, ref:'User'
     }]

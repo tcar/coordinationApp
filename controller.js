@@ -13,15 +13,27 @@ getBars:async (req,res,next)=>{
             const token = result.jsonBody.access_token
             const client = yelp.client(token);
 
-            const result = await client.search({
+            const rez = await client.search({
                 limit:10,
                 categories:'bars',
                 location: req.body.location
                 })
-            const bars = result.jsonBody.businesses
-            bars.map((bar)=>{
-
-            })
+            const bars = rez.jsonBody.businesses
+        
+            for (let i = 0; i<bars.length;i++){
+                const onebar = await Bar.findOne({'id':bars[i].id})
+                if(!onebar){
+                    const newBar = Bar()
+                    newBar.id = bars[i].id
+                    newBar.location =bars[i].location.city
+                    bars[i].mybar = newBar
+                    await newBar.save()
+                }
+         const Mybar = await Bar.findOne({'id':bars[i].id})
+            bars[i].mybar = Mybar
+                
+        }
+            res.send(bars)
         }catch(err){
             res.send(err)
             }
@@ -45,7 +57,6 @@ deleteUsers: async (req,res,next)=>{
     }
 },
 login :async (req,res,next)=>{ 
-    console.log(req.user)
  res.redirect('/');
 
 },
@@ -60,13 +71,50 @@ isAuthenticated: async(req,res,next)=>{
 toggle_going: async (req,res,next)=>{
     const userid = req.body.userid
     const barid = req.body.barid
-    const user = await User.findOne({'facebook.id':userid})
+    const bar = await Bar.findOne({'_id':barid})
+   
+   const inbar = bar.users.some((user)=>{
+       return user==userid
+   })
 
-    console.log(user)
 
+
+
+    if(inbar){
+        bar.users = bar.users.filter((user)=>{
+            return user!=userid
+        })
+        bar.going -=1
+        await bar.save()
+        res.send(bar)
+    }else{
+        
+        bar.users.push(userid)
+        bar.going +=1
+        await bar.save()
+        res.send(bar)
+    }
+
+
+},
+
+deleteBars: async (req,res,next)=>{
+    try{
+       const bars = await Bar.remove({})
+       res.send(bars)
+    }catch(err){
+        res.send(err)
+    }
+},
+myBars: async (req,res,next)=>{
+    try{
+       const bars = await Bar.find({})
+       res.send(bars)
+    }catch(err){
+        res.send(err)
+    }
+},
 
 
 }
 
-
-}

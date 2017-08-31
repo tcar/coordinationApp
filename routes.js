@@ -27,5 +27,16 @@ router.route('/going')
 
 
 
+router.route('/deleteBars')
+    .get(controller.deleteBars)
+router.route('/myBars')
+    .get(controller.myBars)
+
 
 module.exports= router
+
+
+
+
+
+
