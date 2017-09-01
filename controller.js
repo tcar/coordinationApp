@@ -7,6 +7,7 @@ module.exports = {
 
 getBars:async (req,res,next)=>{
     	try{
+            console.log('tu sam ')
             const clientId = auth.yelp.id
             const clientSecret = auth.yelp.secret  
             const result = await yelp.accessToken(clientId, clientSecret)
@@ -18,6 +19,7 @@ getBars:async (req,res,next)=>{
                 categories:'bars',
                 location: req.body.location
                 })
+                console.log(rez)
             const bars = rez.jsonBody.businesses
         
             for (let i = 0; i<bars.length;i++){
@@ -33,6 +35,7 @@ getBars:async (req,res,next)=>{
             bars[i].mybar = Mybar
                 
         }
+        
             res.send(bars)
         }catch(err){
             res.send(err)

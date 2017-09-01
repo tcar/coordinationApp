@@ -4,8 +4,8 @@ import Card from './Card'
 export default class Display extends Component{
 render(){
     return(
-        <div>
-        <Card />
+        <div className = 'container'>
+     
         </div>
     )
 }
