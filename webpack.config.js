@@ -1,18 +1,19 @@
 const webpack = require('webpack')
 const path = require('path')
+var debug = process.env.NODE_ENV !== "production";
 
 module.exports = {
-    devtool:'source-map',
+    devtool: debug ? "inline-sourcemap" : false,
     entry:'./client/index.js',
     output:{
-        path:path.resolve(__dirname, 'client','public '),
-        filenam:'bundle.js'
+        path:__dirname + '/client/public',
+        filename:'bundle.js'
     },
     module:{
         rules:[
             {
                 test:/\.js$/,
-                exclude:'/node_modules/',
+                exclude: /(node_modules)/,
                 use:'babel-loader'
             },
             {
@@ -23,5 +24,10 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+        plugins: debug ? [] : [
+   
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+],
 }

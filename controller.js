@@ -71,7 +71,7 @@ isAuthenticated: async(req,res,next)=>{
 toggle_going: async (req,res,next)=>{
     const userid = req.body.userid
     const barid = req.body.barid
-    const bar = await Bar.findOne({'_id':barid})
+    const bar = await Bar.findOne({'_id':barid}).populate('users')
    
    const inbar = bar.users.some((user)=>{
        return user==userid
