@@ -4,17 +4,21 @@ var debug = process.env.NODE_ENV !== "production";
 
 module.exports = {
     devtool: debug ? "inline-sourcemap" : false,
-    entry:'./client/index.js',
+    entry:path.resolve(__dirname, 'client') + '/index.js',
     output:{
-        path:__dirname + '/client/public',
+        path:path.resolve(__dirname, 'client') + '/public',
         filename:'bundle.js'
     },
     module:{
-        rules:[
+        loaders:[
             {
                 test:/\.js$/,
+                include: path.resolve(__dirname, 'client'),
+                loader: 'babel-loader',
                 exclude: /(node_modules)/,
-                use:'babel-loader'
+                query: {
+                    presets: ['react', 'es2015']
+}
             },
             {
                 test:(/\.css$/),
