@@ -4,21 +4,17 @@ var debug = process.env.NODE_ENV !== "production";
 
 module.exports = {
     devtool: debug ? "inline-sourcemap" : false,
-    entry:path.resolve(__dirname, 'client') + '/index.js',
+    entry:'./client/index.js',
     output:{
-        path:path.resolve(__dirname, 'client') + '/public',
+        path:__dirname + '/client/public',
         filename:'bundle.js'
     },
     module:{
-        loaders:[
+        rules:[
             {
                 test:/\.js$/,
-                include: path.resolve(__dirname, 'client'),
-                loader: 'babel-loader',
                 exclude: /(node_modules)/,
-                query: {
-                    presets: ['react', 'es2015']
-}
+                use:'babel-loader'
             },
             {
                 test:(/\.css$/),
@@ -29,7 +25,6 @@ module.exports = {
             }
         ]
     },
-    
         plugins: debug ? [] : [
    
     new webpack.optimize.OccurrenceOrderPlugin(),

@@ -9,8 +9,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "webpack": "webpack --watch",
-       "postinstall": "webpack -p",
-"start": "node server.js"
+    "postinstall": "webpack -p",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -31,6 +31,7 @@
     "auth0-js": "^8.9.3",
     "auth0-lock": "^10.20.0",
     "axios": "^0.16.2",
+    "babel-loader": "^7.1.2",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
