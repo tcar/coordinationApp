@@ -7,7 +7,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start":"webpack && node server.js",
+    "start":"node server.js",
     "dev": "nodemon server.js",
     "webpack": "webpack --watch"
   },
