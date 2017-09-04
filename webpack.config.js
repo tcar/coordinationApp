@@ -1,8 +1,9 @@
 const webpack = require('webpack')
 const path = require('path')
+var debug = process.env.NODE_ENV !== "production";
 
 module.exports = {
-    devtool: 'source-map',
+    devtool: debug ? "inline-sourcemap" : false,
     entry:'./client/index.js',
     output:{
         path:__dirname + '/client/public',
