@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 
 const bodyParser = require('body-parser')
 
-mongoose.connect('mongodb://localhost/coordinationdb')
+mongoose.connect(process.env.MONGOLAB_URL)
 const app = express()
 
 app.use(express.static(path.join(__dirname, 'client/public')))
@@ -32,7 +32,7 @@ app.use(routes)
 app.route('*').get((req,res)=>{
   res.sendFile(path.join(__dirname+'/client/public/index.html'))
 })
-const port = 5000
+const port =process.env.PORT|| 5000
 app.listen(port,()=>{
 console.log('app listening od port' + port)
 })

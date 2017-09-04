@@ -8,14 +8,6 @@ const userSchema = new Schema({
         id:{type: String},
         token: String,
     },
-    google:{
-        username:{type:String},
-        id:{type: String}
-    },
-    twitter:{
-        username:{type:String},
-        id:{type: String}
-    },
 
     bars:[{
         type:Schema.Types.ObjectId, ref:'Bar'
