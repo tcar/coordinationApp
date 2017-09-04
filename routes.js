@@ -23,14 +23,18 @@ router.route('/deleteUsers')
     .get(controller.deleteUsers)
 
 router.route('/going')
-    .post(controller.toggle_going)
-
-
+    .put(controller.isAuthenticated,controller.toggle_going)
 
 router.route('/deleteBars')
-    .get(controller.deleteBars)
+    .delete(controller.deleteBars)
 router.route('/myBars')
     .get(controller.myBars)
+
+router.route('/user')
+    .post(controller.getUser)
+
+    router.route('/logout')
+    .get(controller.logout)
 
 
 module.exports= router

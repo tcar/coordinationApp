@@ -7,7 +7,6 @@ module.exports = {
 
 getBars:async (req,res,next)=>{
     	try{
-            console.log('tu sam ')
             const clientId = auth.yelp.id
             const clientSecret = auth.yelp.secret  
             const result = await yelp.accessToken(clientId, clientSecret)
@@ -19,9 +18,9 @@ getBars:async (req,res,next)=>{
                 categories:'bars',
                 location: req.body.location
                 })
-                console.log(rez)
+               
             const bars = rez.jsonBody.businesses
-        
+         
             for (let i = 0; i<bars.length;i++){
                 const onebar = await Bar.findOne({'id':bars[i].id})
                 if(!onebar){
@@ -60,32 +59,37 @@ deleteUsers: async (req,res,next)=>{
     }
 },
 login :async (req,res,next)=>{ 
- res.redirect('/');
+    
+    req.session.save()
+res.redirect('/login/' + req.user.facebook.token)
 
 },
 
 isAuthenticated: async(req,res,next)=>{
     if(req.user){
+
         next()
     }else{
-        res.send('you need authenticate')
+        console.log('you need authenticate')
 }
 },
 toggle_going: async (req,res,next)=>{
-    const userid = req.body.userid
+   
+
+    const userid = req.user._id
     const barid = req.body.barid
     const bar = await Bar.findOne({'_id':barid}).populate('users')
-   
    const inbar = bar.users.some((user)=>{
-       return user==userid
+       return user.equals(userid)
    })
+
 
 
 
 
     if(inbar){
         bar.users = bar.users.filter((user)=>{
-            return user!=userid
+            return user==userid
         })
         bar.going -=1
         await bar.save()
@@ -113,6 +117,28 @@ myBars: async (req,res,next)=>{
     try{
        const bars = await Bar.find({})
        res.send(bars)
+    }catch(err){
+        res.send(err)
+    }
+},
+getUser: async (req,res,next)=>{
+    try{
+      if(req.user){
+          res.send(true)
+      }else{
+          res.send(false)
+      }
+       
+    }catch(err){
+        res.send(err)
+    }
+},
+
+logout: async (req,res,next)=>{
+    try{ 
+       req.logout();
+      console.log(req.user)
+  res.redirect('/');
     }catch(err){
         res.send(err)
     }
