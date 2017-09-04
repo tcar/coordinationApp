@@ -6,6 +6,6 @@ module.exports = {
     },
     yelp:{
         id:process.env.YELP_ID,
-        secret:PROCESS.ENV.YELP_SECRET
+        secret:process.env.YELP_SECRET
     }
 }
