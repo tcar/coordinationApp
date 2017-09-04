@@ -25,6 +25,9 @@ module.exports = {
             }
         ]
     },
+     resolve: {
+    extensions: ['', '.js', '.jsx']
+},
         plugins: debug ? [] : [
    
     new webpack.optimize.OccurrenceOrderPlugin(),
