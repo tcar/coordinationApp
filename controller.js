@@ -84,9 +84,6 @@ toggle_going: async (req,res,next)=>{
    })
 
 
-
-
-
     if(inbar){
         bar.users = bar.users.filter((user)=>{
             return user==userid
