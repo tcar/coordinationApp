@@ -1,16 +1,23 @@
 import React, { Component } from 'react'
 import {Card, CardActions, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
-
+import Toggle from 'material-ui/Toggle';
 export default class BarCard extends Component{
+    constructor(){
+        super()
+        this.state = {
+            toggle:false
+        }
+    }
+
     
     render(){
-        console.log(this.props.isAuthenticated)
-
           const style={
       'padding':'60px'
     }
-    const bar = this.props.info
+    const bar = this.props.bar
+        console.log(bar)
+
         return(
             <div style={style}>
                 <Card>
@@ -27,7 +34,7 @@ export default class BarCard extends Component{
                 <CardActions>
                 {this.props.isAuthenticated?
                 (   <div>
-                <RaisedButton label='going ' onClick={()=>{this.props.going({barid:bar.mybar._id})}} primary={true}></RaisedButton> <p>{bar.mybar.going}</p>
+                <Toggle  toggled={bar.mybar.going} onClick={()=>{this.props.going({barid:bar.mybar._id})}} />
                 </div>):
                 (  <div>
                 <RaisedButton  href='/auth/facebook' label="facebok login" primary={true} />

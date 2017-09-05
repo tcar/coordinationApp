@@ -30,8 +30,13 @@ getBars:async (req,res,next)=>{
                     bars[i].mybar = newBar
                     await newBar.save()
                 }
-         const Mybar = await Bar.findOne({'id':bars[i].id})
+                
+         const Mybar = await Bar.findOne({'id':bars[i].id}).populate('users')
             bars[i].mybar = Mybar
+            if(req.user){
+        const user = await User.findOne({_id:req.user._id}).populate('bars')
+        bars[i].user = user
+            }
                 
         }
         
@@ -43,7 +48,7 @@ getBars:async (req,res,next)=>{
 
 getUsers: async (req,res,next)=>{
     try{
-       const users = await User.find({})
+       const users = await User.find({}).populate('bars')
        res.send(users)
     }catch(err){
         res.send(err)
@@ -76,9 +81,9 @@ isAuthenticated: async(req,res,next)=>{
 toggle_going: async (req,res,next)=>{
    
 
-    const userid = req.user._id
+   const userid = req.user._id
     const barid = req.body.barid
-    const bar = await Bar.findOne({'_id':barid}).populate('users')
+    const bar = await Bar.findOne({'_id':barid})
    const inbar = bar.users.some((user)=>{
        return user.equals(userid)
    })
@@ -88,16 +93,17 @@ toggle_going: async (req,res,next)=>{
         bar.users = bar.users.filter((user)=>{
             return user==userid
         })
-        bar.going -=1
+        bar.going =false
         await bar.save()
         res.send(bar)
     }else{
         
         bar.users.push(userid)
-        bar.going +=1
+        bar.going =true
         await bar.save()
         res.send(bar)
     }
+
 
 
 },
@@ -112,7 +118,8 @@ deleteBars: async (req,res,next)=>{
 },
 myBars: async (req,res,next)=>{
     try{
-       const bars = await Bar.find({})
+        const loc = req.body.location.toLowerCase();
+       const bars = await Bar.find({location:loc})
        res.send(bars)
     }catch(err){
         res.send(err)
@@ -121,7 +128,8 @@ myBars: async (req,res,next)=>{
 getUser: async (req,res,next)=>{
     try{
       if(req.user){
-          res.send(true)
+          const user = await User.findOne({_id:req.user._id})
+          res.send(user)
       }else{
           res.send(false)
       }

@@ -5,10 +5,13 @@ const Schema = mongoose.Schema
 const barSchema = new Schema({
     name: String,
     id:String,
-    location:String,
+    location:{
+        type:String,
+        lowercase:true
+        },
     going:{
-        type:Number,
-        default:0
+        type:Boolean,
+        default:false
     },
     users:[{
         type:Schema.Types.ObjectId, ref:'User'

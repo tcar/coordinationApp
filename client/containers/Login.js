@@ -2,12 +2,12 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
 import { login } from '../actions/userActions'
-
+import { getBars} from '../actions/barActions'
 class Login extends Component{
 
 componentWillMount(){
-    localStorage.setItem('token',this.props.match.params.token)
-    this.props.login()
+    this.props.login(this.props.match.params.token)
+    this.props.getBars({location:localStorage.getItem('location')})
 }
 
 
@@ -29,9 +29,12 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch)=>{
     return {
-        login:()=>{
-            dispatch(login())
-        }
+        login:(user)=>{
+            dispatch(login(user))
+        },
+         getBars:(location)=>{
+        dispatch(getBars(location))
+      },
     }
 }
 

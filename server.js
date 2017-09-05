@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 
 const bodyParser = require('body-parser')
 
-mongoose.connect( process.env.MONGOLAB_URL)
+mongoose.connect( process.env.MONGOLAB_URL||'mongodb://localhost:27017/coordinationappdb')
 const app = express()
 
 app.use(express.static(path.join(__dirname, 'client/public')))

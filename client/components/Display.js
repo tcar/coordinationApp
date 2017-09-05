@@ -7,17 +7,16 @@ import Card from './Card'
 export default class Display extends Component{
 
 render(){
-    
-    if(localStorage.getItem('info')){
-            const info= JSON.parse(localStorage.getItem('info'))
-const bars=info.map((bar)=>{
+    const bars=this.props.bars
+    if(bars){
+        const bar=bars.map((bar)=>{
     return(
-    <Card isAuthenticated={this.props.isAuthenticated} going = {this.props.going} key={bar.id} info ={bar} />
+    <Card  bar = {bar} isAuthenticated={this.props.isAuthenticated}  key={bar.id} info ={bar} going={this.props.going} />
 )
 })
 return(
     <div>
-    {bars}
+    {bar}
     </div>
 )
     }else{

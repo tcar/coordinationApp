@@ -1,12 +1,15 @@
 export default function reducer(state = {
 fetchBars:false,
 barsFetched:false,
-bars:[]
+bars:[],
+isgoing:[]
+
 }, action){
     switch(action.type){
         case 'FETCH_BARS': {
             return {
-                fetchBars:true
+                fetchBars:true,
+                barsFetched:false
             }
         }
           case 'BARS_FETCHED': {
@@ -16,6 +19,12 @@ bars:[]
                 bars:action.payload
             }
         }
+           case 'TOGGLE_GOING': {
+            return {
+                isgoing:action.payload
+            }
+        }
+   
 
         default:
         return state

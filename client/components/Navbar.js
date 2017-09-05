@@ -10,7 +10,10 @@ render(){
           <Toolbar>
           <ToolbarTitle text='Nightlife' />
           <ToolbarGroup lastChild={true}>
-            <RaisedButton  onClick={()=>{this.props.logout()}} primary={true} label='logout'></RaisedButton>
+            {this.props.isAuthenticated?(            <RaisedButton  onClick={()=>{this.props.logout()}} primary={true} label='logout'></RaisedButton>
+):(<div></div>)
+              
+            }
           </ToolbarGroup>
           </Toolbar>
 

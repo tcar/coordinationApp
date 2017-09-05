@@ -3,7 +3,7 @@ import AppBar from 'material-ui/AppBar';
 import { connect } from 'react-redux'
 
 //ACTIONS
-import { getBars, going } from '../actions/barActions'
+import { getBars, going,} from '../actions/barActions'
 import {  logout } from '../actions/userActions'
 
 //COMPONENTS
@@ -35,9 +35,9 @@ render(){
 
     return(
     <div className = 'container'>
-    <Navbar  logout={this.logout} />
+    <Navbar isAuthenticated={this.props.isAuthenticated} logout={this.logout} />
     <Searchbar handleChange = {this.handleChange} getBars = {this.getBars} />
-    <Display isAuthenticated={this.props.isAuthenticated} going = {this.going} />
+    <Display  bars={this.props.bars} isAuthenticated={this.props.isAuthenticated} going = {this.going} />
     </div>
     )
 }
@@ -53,6 +53,7 @@ handleChange(){
 
 getBars(){
     this.props.getBars(this.state.location)
+
 }
 
 logout(){
@@ -75,7 +76,9 @@ going(id){
 const mapStateToProps = (state)=>{
   return{
     bars:state.bar.bars,
-    isAuthenticated: state.user.isAuthenticated
+    isAuthenticated: state.user.isAuthenticated,
+    
+  
    
   }
 }
@@ -91,7 +94,8 @@ const mapDispatchToProps = (dispatch)=>{
       },
       going:(id)=>{
           dispatch(going(id))
-      }
+      },
+ 
     
    
     }

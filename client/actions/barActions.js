@@ -13,13 +13,20 @@ export function getBars(location){
             withCredentials: true
           })
         .then((res)=>{
-             
-          localStorage.setItem('info', JSON.stringify(res.data));
-          dispatch({type:'BARS_FETCHED', payload:res.data})
+              console.log(res.data)
+             dispatch({
+           
+               type:'BARS_FETCHED',
+               payload:res.data
+             })
+     
         
       })
       }
 }
+
+
+
 export function going(id){
   return dispatch=>{
         dispatch({type:'GOING'})
@@ -29,20 +36,8 @@ export function going(id){
             data:id,
             withCredentials: true
           })
-        .then(()=>{
-          const location = {location:localStorage.getItem('location')}
-          return axios({
-            method:'post',
-            url:'/bars',
-            data:location,
-            withCredentials: true
-          })
         .then((res)=>{
-             
-          localStorage.setItem('info', JSON.stringify(res.data));
-          dispatch({type:'BARS_FETCHED', payload:res.data})
-        
-      })
+            console.log(res)
       })
       }
 }

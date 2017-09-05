@@ -27,8 +27,9 @@ router.route('/going')
 
 router.route('/deleteBars')
     .delete(controller.deleteBars)
+
 router.route('/myBars')
-    .get(controller.myBars)
+    .post(controller.myBars)
 
 router.route('/user')
     .post(controller.getUser)
