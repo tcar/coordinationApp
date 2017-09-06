@@ -2,7 +2,7 @@ module.exports = {
     facebook:{
         id:process.env.FACEBOOK_ID,
         secret:process.env.FACEBOOK_SECRET,
-        callback:process.env.HOST + 'auth/facebook/callback'
+        callback:process.env.HOST
     },
 
     yelp:{

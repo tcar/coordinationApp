@@ -39,7 +39,7 @@ render(){
     <div className = 'container'>
     <Navbar user = {this.props.user} isAuthenticated={this.props.isAuthenticated} logout={this.logout} />
     <Searchbar handleChange = {this.handleChange} getBars = {this.getBars} />
-    <Display fetching={this.props.fetching} getUsers={this.getUsers} users = {this.props.users} barsGoing={this.props.barsGoing} barsGoing={this.props.barsGoing} bars={this.props.bars} isAuthenticated={this.props.isAuthenticated} going = {this.going} />
+    <Display error={this.props.error} fetching={this.props.fetching} getUsers={this.getUsers} users = {this.props.users} barsGoing={this.props.barsGoing} barsGoing={this.props.barsGoing} bars={this.props.bars} isAuthenticated={this.props.isAuthenticated} going = {this.going} />
     </div>
     )
 }
@@ -86,7 +86,8 @@ const mapStateToProps = (state)=>{
     barsGoing:state.user.bars,
     users:state.user.users,
     user:state.user.user,
-    fetching:state.bar.fetchBars
+    fetching:state.bar.fetchBars,
+    error:state.bar.error
     
   
    

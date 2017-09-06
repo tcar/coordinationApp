@@ -13,6 +13,7 @@ export function getBars(location){
             withCredentials: true
           })
         .then((res)=>{
+          console.log(res)
              dispatch({
            
                type:'BARS_FETCHED',

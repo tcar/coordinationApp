@@ -8,10 +8,20 @@ export default class Display extends Component{
 
 
 render(){
+    const style={
+        textAlign:'center'
+    }
     
-    const bars=this.props.bars
-    if(bars){
-        const bar=bars.map((bar)=>{
+    console.log(this.props.error=='no match found')
+    if(this.props.error=='no match found'){
+        return (
+        <div style={style}>
+        <img  src='http://s2.quickmeme.com/img/76/7678de76cbb01caf558f4c80dc898efeaefd18fe6c1a81f636f612cd7e2b26fc.jpg' />
+        </div>)
+ }
+    
+    else if(this.props.bars){
+        const bar=this.props.bars.map((bar)=>{
     return(
         
     <Card getUsers={this.props.getUsers} users={this.props.users} barsGoing={this.props.barsGoing} barsGoing={this.props.barsGoing} bar = {bar} isAuthenticated={this.props.isAuthenticated}  key={bar.id} info ={bar} going={this.props.going} />

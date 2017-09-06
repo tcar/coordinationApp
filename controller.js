@@ -20,12 +20,9 @@ getBars:async (req,res,next)=>{
                 })
                
             const bars = rez.jsonBody.businesses
-         
-   
-        
             res.send(bars)
         }catch(err){
-            res.send(err)
+            res.send('no match found')
             }
 },
 

@@ -2,6 +2,7 @@ export default function reducer(state = {
 fetchBars:false,
 barsFetched:false,
 bars:[],
+error:''
 
 
 }, action){
@@ -13,11 +14,18 @@ bars:[],
             }
         }
           case 'BARS_FETCHED': {
-            return {
+              if(action.payload=='no match found'){
+                  return{...state,
+                      error:action.payload
+                  }
+              }else{
+                   return {...state,
                 fetchBars:false,
                 barsFetched:true,
                 bars:action.payload
             }
+              }
+           
         }
            
    

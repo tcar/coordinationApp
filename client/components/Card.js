@@ -30,6 +30,7 @@ export default class BarCard extends Component{
           const style={
       paddingTop:'60px'
     }
+    
     const bar = this.props.bar
     const users = this.props.users
     
