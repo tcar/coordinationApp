@@ -49,6 +49,17 @@ export function going(id){
               type:'TOGGLE_GOING',payload:res.data
             })
 
+                axios({
+            method:'get',
+            url:'/users',
+          })
+        .then((res)=>{
+            dispatch({
+              type:'GET_USERS',payload:res.data
+            })
+
+      })
+
       })
       }
 }
