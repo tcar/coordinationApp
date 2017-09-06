@@ -13,7 +13,6 @@ export function getBars(location){
             withCredentials: true
           })
         .then((res)=>{
-              console.log(res.data)
              dispatch({
            
                type:'BARS_FETCHED',
@@ -27,21 +26,3 @@ export function getBars(location){
 
 
 
-export function going(id){
-  return dispatch=>{
-        dispatch({type:'GOING'})
-      axios({
-            method:'put',
-            url:'/going',
-            data:id,
-            withCredentials: true
-          })
-        .then((res)=>{
-            console.log(res.data)
-            dispatch({
-              type:'TOGGLe_GOING',payload:res.data
-            })
-
-      })
-      }
-}

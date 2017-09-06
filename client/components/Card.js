@@ -28,7 +28,7 @@ export default class BarCard extends Component{
 
         
           const style={
-      'padding':'60px'
+      paddingTop:'60px'
     }
     const bar = this.props.bar
     const users = this.props.users
@@ -42,14 +42,14 @@ export default class BarCard extends Component{
     
 
         return(
-            <div style={style}>
+            <div className='col s4' style={style}>
                 <Card>
                 <CardMedia 
-                overlay={<CardTitle title={'phone number:'} subtitle={bar.phone} />}
+                overlay={<CardTitle title={bar.name} subtitle={bar.location.address1} />}
                 >
-                <img src={bar.image_url} alt="bar" />
+                <img src={bar.image_url} height="200" alt="bar" />
                 </CardMedia>
-                <CardTitle title={bar.name} subtitle={bar.location.address1} />
+                <CardTitle title={'phone number:'} subtitle={bar.phone} />
                 <CardText>
                 ratings:{bar.rating}/5<br/>
                 review count:{bar.review_count}
@@ -58,9 +58,9 @@ export default class BarCard extends Component{
                 {this.props.isAuthenticated?
                 (   <div>
                 <Toggle toggled={going} onToggle={()=>{this.props.getUsers()}}   onClick={()=>{this.props.going({barid:bar.id})}} />
-                 <RaisedButton label="Scrollable Dialog" onClick={()=>{this.handleOpen()}} />
+                 <RaisedButton label="who is going" onClick={()=>{this.handleOpen()}} />
         <Dialog
-          title="Scrollable Dialog"
+          title="WHO IS GOING"
           modal={false}
           open={this.state.open}
           onRequestClose={()=>{this.handleClose()}}

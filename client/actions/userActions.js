@@ -28,7 +28,7 @@ export function getUser(){
           })
         .then((res)=>{
           
-          dispatch({type:'GET_USER', payload:res.data.bars})
+          dispatch({type:'LOGIN', payload:res.data})
         
 
       })
@@ -45,7 +45,6 @@ export function going(id){
             withCredentials: true
           })
         .then((res)=>{
-            console.log(res.data)
             dispatch({
               type:'TOGGLE_GOING',payload:res.data
             })

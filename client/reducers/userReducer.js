@@ -2,23 +2,21 @@ export default function reducer(state = {
 isAuthenticated:false,
 userid:'',
 bars:[],
-users:[]
+users:[],
+user:[]
 }, action){
     switch(action.type){
-        case 'LOGIN': {
-            return {...state,
-                isAuthenticated:true,
-                userid:action.payload
-            }
-        }
+     
          case 'LOGOUT': {
             return {...state,
                 isAuthenticated:false
             }
         }
-        case 'GET_USER': {
+        case 'LOGIN': {
             return {...state,
-                bars:action.payload
+                isAuthenticated:true,
+                bars:action.payload.bars,
+                user:action.payload
             }
         }
            case 'TOGGLE_GOING': {

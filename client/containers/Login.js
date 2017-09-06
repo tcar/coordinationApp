@@ -6,7 +6,7 @@ import { getBars} from '../actions/barActions'
 class Login extends Component{
 
 componentWillMount(){
-    this.props.login(this.props.match.params.token)
+
     this.props.getBars({location:localStorage.getItem('location')})
     this.props.getUser()
 }

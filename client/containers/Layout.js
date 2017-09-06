@@ -37,7 +37,7 @@ render(){
 
     return(
     <div className = 'container'>
-    <Navbar isAuthenticated={this.props.isAuthenticated} logout={this.logout} />
+    <Navbar user = {this.props.user} isAuthenticated={this.props.isAuthenticated} logout={this.logout} />
     <Searchbar handleChange = {this.handleChange} getBars = {this.getBars} />
     <Display getUsers={this.getUsers} users = {this.props.users} barsGoing={this.props.barsGoing} barsGoing={this.props.barsGoing} bars={this.props.bars} isAuthenticated={this.props.isAuthenticated} going = {this.going} />
     </div>
@@ -84,7 +84,8 @@ const mapStateToProps = (state)=>{
     isAuthenticated: state.user.isAuthenticated,
     barsGoing:state.bar.barsGoing,
     barsGoing:state.user.bars,
-    users:state.user.users
+    users:state.user.users,
+    user:state.user.user
     
   
    

@@ -17,7 +17,7 @@ export default class Routes extends Component{
 render(){
     return(
         <Router>
-            <div className='background'>
+            <div >
             <switch>
             <Route exact path="/" component={Layout}/>
             <Route exact path="/login/:token" component={Login}/>
