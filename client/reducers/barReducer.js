@@ -2,7 +2,7 @@ export default function reducer(state = {
 fetchBars:false,
 barsFetched:false,
 bars:[],
-isgoing:[]
+
 
 }, action){
     switch(action.type){
@@ -19,11 +19,7 @@ isgoing:[]
                 bars:action.payload
             }
         }
-           case 'TOGGLE_GOING': {
-            return {
-                isgoing:action.payload
-            }
-        }
+           
    
 
         default:

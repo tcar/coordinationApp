@@ -32,7 +32,7 @@ router.route('/myBars')
     .post(controller.myBars)
 
 router.route('/user')
-    .post(controller.getUser)
+    .get(controller.getUser)
 
     router.route('/logout')
     .get(controller.logout)

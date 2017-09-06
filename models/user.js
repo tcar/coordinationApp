@@ -10,7 +10,7 @@ const userSchema = new Schema({
     },
 
     bars:[{
-        type:Schema.Types.ObjectId, ref:'Bar',
+        type:String
         }],
     
 })

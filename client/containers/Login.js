@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import { login } from '../actions/userActions'
+import { login, getUser } from '../actions/userActions'
 import { getBars} from '../actions/barActions'
 class Login extends Component{
 
 componentWillMount(){
     this.props.login(this.props.match.params.token)
     this.props.getBars({location:localStorage.getItem('location')})
+    this.props.getUser()
 }
 
 
@@ -35,6 +36,10 @@ const mapDispatchToProps = (dispatch)=>{
          getBars:(location)=>{
         dispatch(getBars(location))
       },
+      getUser:()=>{
+        dispatch(getUser())
+      },
+
     }
 }
 

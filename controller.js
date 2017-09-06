@@ -21,24 +21,7 @@ getBars:async (req,res,next)=>{
                
             const bars = rez.jsonBody.businesses
          
-            for (let i = 0; i<bars.length;i++){
-                const onebar = await Bar.findOne({'id':bars[i].id})
-                if(!onebar){
-                    const newBar = Bar()
-                    newBar.id = bars[i].id
-                    newBar.location =bars[i].location.city
-                    bars[i].mybar = newBar
-                    await newBar.save()
-                }
-                
-         const Mybar = await Bar.findOne({'id':bars[i].id}).populate('users')
-            bars[i].mybar = Mybar
-            if(req.user){
-        const user = await User.findOne({_id:req.user._id}).populate('bars')
-        bars[i].user = user
-            }
-                
-        }
+   
         
             res.send(bars)
         }catch(err){
@@ -48,7 +31,7 @@ getBars:async (req,res,next)=>{
 
 getUsers: async (req,res,next)=>{
     try{
-       const users = await User.find({}).populate('bars')
+       const users = await User.find({})
        res.send(users)
     }catch(err){
         res.send(err)
@@ -83,26 +66,29 @@ toggle_going: async (req,res,next)=>{
 
    const userid = req.user._id
     const barid = req.body.barid
-    const bar = await Bar.findOne({'_id':barid})
-   const inbar = bar.users.some((user)=>{
-       return user.equals(userid)
+  
+    const user = await User.findOne({_id:userid})
+    console.log(barid)
+   const havit = user.bars.includes(barid)
+
+console.log(havit)
+if(havit){
+console.log('in havit')
+  user.bars = user.bars.filter((bar)=>{
+       return bar!==barid
+    
    })
+      await user.save()
+   console.log(user.bars)
+   res.send(user.bars)
 
-
-    if(inbar){
-        bar.users = bar.users.filter((user)=>{
-            return user==userid
-        })
-        bar.going =false
-        await bar.save()
-        res.send(bar)
-    }else{
-        
-        bar.users.push(userid)
-        bar.going =true
-        await bar.save()
-        res.send(bar)
-    }
+}else{
+    console.log('tu sam')
+user.bars.push(barid)
+console.log(user.bars)
+ await user.save()
+ res.send(user.bars)
+}
 
 
 

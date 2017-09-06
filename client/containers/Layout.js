@@ -3,8 +3,8 @@ import AppBar from 'material-ui/AppBar';
 import { connect } from 'react-redux'
 
 //ACTIONS
-import { getBars, going,} from '../actions/barActions'
-import {  logout } from '../actions/userActions'
+import { getBars,} from '../actions/barActions'
+import {  logout, going, getUsers } from '../actions/userActions'
 
 //COMPONENTS
 
@@ -21,23 +21,25 @@ constructor(){
     this.getBars = this.getBars.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.logout = this.logout.bind(this)
-    this.going = this.going.bind(this)    
+    this.going = this.going.bind(this) 
+    this.getUsers = this.getUsers.bind(this)   
 
    
     
 }
 
 
-
+componentWillMount(){
+    this.props.getUsers()
+}
 
 render(){
-
 
     return(
     <div className = 'container'>
     <Navbar isAuthenticated={this.props.isAuthenticated} logout={this.logout} />
     <Searchbar handleChange = {this.handleChange} getBars = {this.getBars} />
-    <Display  bars={this.props.bars} isAuthenticated={this.props.isAuthenticated} going = {this.going} />
+    <Display getUsers={this.getUsers} users = {this.props.users} barsGoing={this.props.barsGoing} barsGoing={this.props.barsGoing} bars={this.props.bars} isAuthenticated={this.props.isAuthenticated} going = {this.going} />
     </div>
     )
 }
@@ -67,6 +69,9 @@ going(id){
     this.props.going(id)
 }
 
+getUsers(){
+    this.props.getUsers()
+}
 
 
 
@@ -77,6 +82,9 @@ const mapStateToProps = (state)=>{
   return{
     bars:state.bar.bars,
     isAuthenticated: state.user.isAuthenticated,
+    barsGoing:state.bar.barsGoing,
+    barsGoing:state.user.bars,
+    users:state.user.users
     
   
    
@@ -94,6 +102,9 @@ const mapDispatchToProps = (dispatch)=>{
       },
       going:(id)=>{
           dispatch(going(id))
+      },
+       getUsers:()=>{
+          dispatch(getUsers())
       },
  
     

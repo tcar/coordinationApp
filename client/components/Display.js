@@ -11,7 +11,7 @@ render(){
     if(bars){
         const bar=bars.map((bar)=>{
     return(
-    <Card  bar = {bar} isAuthenticated={this.props.isAuthenticated}  key={bar.id} info ={bar} going={this.props.going} />
+    <Card getUsers={this.props.getUsers} users={this.props.users} barsGoing={this.props.barsGoing} barsGoing={this.props.barsGoing} bar = {bar} isAuthenticated={this.props.isAuthenticated}  key={bar.id} info ={bar} going={this.props.going} />
 )
 })
 return(

@@ -37,7 +37,11 @@ export function going(id){
             withCredentials: true
           })
         .then((res)=>{
-            console.log(res)
+            console.log(res.data)
+            dispatch({
+              type:'TOGGLe_GOING',payload:res.data
+            })
+
       })
       }
 }
