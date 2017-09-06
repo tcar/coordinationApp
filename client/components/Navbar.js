@@ -11,19 +11,33 @@ render(){
   }
     return(
         <div>
-          <Toolbar>
-          <ToolbarTitle text='Nightlife' />
-          <ToolbarGroup lastChild={true}>
+         
             {this.props.isAuthenticated?(<div>
-              
-               <RaisedButton  onClick={()=>{this.props.logout()}} primary={true} label='logout'></RaisedButton>
+              <Toolbar>
+                <ToolbarTitle text={'welcome' + ' ' + this.props.user.facebook.name} />
+          <ToolbarGroup lastChild={true}>
+                         <RaisedButton  onClick={()=>{this.props.logout()}} primary={true} label='logout'></RaisedButton>
+
+           </ToolbarGroup>
+          </Toolbar>
+
+
+
+
+
             
             </div>
-):(<div></div>)
+):(<div>
+
+ <Toolbar>
+          <ToolbarTitle text='Welcome motherfucker! Login to check in!' />
+          <ToolbarGroup lastChild={true}>
+           </ToolbarGroup>
+          </Toolbar>
+</div>)
               
             }
-          </ToolbarGroup>
-          </Toolbar>
+         
 
         </div>
     )

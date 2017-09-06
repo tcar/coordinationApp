@@ -19,10 +19,25 @@ render(){
 )
 })
 return(
+
     <div className='row'>
     {bar}
     </div>
 )
+    }else if(this.props.fetching){
+        return <div id="inner">
+  <div className="impress"></div>
+  <div className="containe">
+    <ul>
+       <li> </li>
+       <li> </li>
+       <li> </li>
+       <li> </li>
+       <li> </li>
+       <li> </li>
+    </ul>
+  </div>
+</div>
     }else{
         return <div></div>
     }

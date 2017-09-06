@@ -5,7 +5,13 @@ import RaisedButton from 'material-ui/RaisedButton'
 export default class Searchbar extends Component{
     render(){
         const style={
-          'marginTop':'6px'
+            margin:{
+                'marginTop':'6px'
+            },
+            textColor:{
+                color:"white"
+            }
+          
       }
         return(
             <div className = 'container'>
@@ -14,12 +20,14 @@ export default class Searchbar extends Component{
                     <TextField 
                     onChange={()=>{this.props.handleChange()}}
                     id='barSearch' 
+                    hintStyle={style.textColor}
+                    inputStyle={style.textColor}
                     hintText='enter your city'
                     fullWidth={true}
                     />
                 </div>
                 <div className='col s2'>
-                <RaisedButton onClick={()=>{this.props.getBars()}} style={style} primary={true} label='search'></RaisedButton>
+                <RaisedButton onClick={()=>{this.props.getBars()}} style={style.margin} primary={true} label='search'></RaisedButton>
                 </div>
                 
             </div>

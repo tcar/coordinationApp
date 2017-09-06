@@ -11,7 +11,7 @@ const userSchema = new Schema({
 
     bars:[{
         type:String,
-        createdAt:{type:Date, expires:'24h'}
+        
         }],
     
 })
