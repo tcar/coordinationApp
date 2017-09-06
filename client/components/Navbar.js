@@ -6,7 +6,6 @@ export default class Navbar extends Component{
 
 render(){
   if(this.props.isAuthenticated){
-  console.log(this.props.user.facebook.name)
 
   }
     return(
