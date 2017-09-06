@@ -38,7 +38,14 @@ getUsers: async (req,res,next)=>{
     }
 },
 
-
+deleteUsers: async (req,res,next)=>{
+    try{
+       const users = await User.remove({})
+       res.send(users)
+    }catch(err){
+        res.send(err)
+    }
+},
 login :async (req,res,next)=>{ 
     
     req.session.save()

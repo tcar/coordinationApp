@@ -25,7 +25,8 @@ router.route('/going')
     .put(controller.isAuthenticated,controller.toggle_going)
 
 
-
+router.route('/delete')
+    .get(controller.deleteUsers)
 router.route('/user')
     .get(controller.getUser)
 
