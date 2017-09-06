@@ -30,9 +30,7 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch)=>{
     return {
-        login:(user)=>{
-            dispatch(login(user))
-        },
+    
          getBars:(location)=>{
         dispatch(getBars(location))
       },

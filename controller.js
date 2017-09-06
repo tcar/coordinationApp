@@ -38,14 +38,7 @@ getUsers: async (req,res,next)=>{
     }
 },
 
-deleteUsers: async (req,res,next)=>{
-    try{
-       const users = await User.remove({})
-       res.send(users)
-    }catch(err){
-        res.send(err)
-    }
-},
+
 login :async (req,res,next)=>{ 
     
     req.session.save()
@@ -73,7 +66,6 @@ toggle_going: async (req,res,next)=>{
 
 console.log(havit)
 if(havit){
-console.log('in havit')
   user.bars = user.bars.filter((bar)=>{
        return bar!==barid
     
@@ -83,9 +75,7 @@ console.log('in havit')
    res.send(user.bars)
 
 }else{
-    console.log('tu sam')
 user.bars.push(barid)
-console.log(user.bars)
  await user.save()
  res.send(user.bars)
 }
@@ -94,23 +84,6 @@ console.log(user.bars)
 
 },
 
-deleteBars: async (req,res,next)=>{
-    try{
-       const bars = await Bar.remove({})
-       res.send(bars)
-    }catch(err){
-        res.send(err)
-    }
-},
-myBars: async (req,res,next)=>{
-    try{
-        const loc = req.body.location.toLowerCase();
-       const bars = await Bar.find({location:loc})
-       res.send(bars)
-    }catch(err){
-        res.send(err)
-    }
-},
 getUser: async (req,res,next)=>{
     try{
       if(req.user){

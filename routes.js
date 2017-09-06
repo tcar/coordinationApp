@@ -19,17 +19,12 @@ router.route('/bars')
 router.route('/users')
     .get(controller.getUsers)
 
-router.route('/deleteUsers')
-    .get(controller.deleteUsers)
+
 
 router.route('/going')
     .put(controller.isAuthenticated,controller.toggle_going)
 
-router.route('/deleteBars')
-    .delete(controller.deleteBars)
 
-router.route('/myBars')
-    .post(controller.myBars)
 
 router.route('/user')
     .get(controller.getUser)

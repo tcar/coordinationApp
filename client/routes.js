@@ -5,23 +5,33 @@ import {
   Link,
   Redirect
 } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import Layout from './containers/Layout'
 import Login from './containers/Login'
 
-export default class Routes extends Component{
+ class Routes extends Component{
 
 
 
 
 render(){
+    
+
     return(
         <Router>
             <div >
             <switch>
             <Route exact path="/" component={Layout}/>
-            <Route exact path="/login/:token" component={Login}/>
-            <Redirect  exact from="/login/:token" to="/"/>
+            <Route exact path="/login/:token" render={() => (
+                this.props.isAuthenticated ? 
+                (
+                    <Redirect to="/"/>
+                ) : (
+                 <Login/>
+                    )
+                    )}/>
+            
             </switch>
             </div>
         </Router>
@@ -29,3 +39,22 @@ render(){
     }
 
 }
+
+
+const mapStateToProps = (state)=>{
+    return {
+        isAuthenticated:state.user.isAuthenticated
+    }
+}
+
+const mapDispatchToProps = (dispatch)=>{
+    return {
+    
+
+
+    }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Routes)
