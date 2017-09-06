@@ -38,7 +38,6 @@ export default class BarCard extends Component{
             return <p key={user._id}>{user.facebook.name}</p>
         }
     })
-    console.log(userGoing)
     
 
         return(
@@ -57,7 +56,7 @@ export default class BarCard extends Component{
                 <CardActions>
                 {this.props.isAuthenticated?
                 (   <div>
-                <Toggle toggled={going} onToggle={()=>{this.props.getUsers()}}   onClick={()=>{this.props.going({barid:bar.id})}} />
+                <Toggle toggled={going}  onClick={()=>{ this.props.going({barid:bar.id}); this.props.getUsers() }}  />
                  <RaisedButton label="who is going" onClick={()=>{this.handleOpen()}} />
         <Dialog
           title="WHO IS GOING"

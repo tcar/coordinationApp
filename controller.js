@@ -1,5 +1,5 @@
 const User = require('./models/user')
-const Bar = require('./models/bar')
+
 const passport = require('passport')
 const auth = require('./auth/credentials')
 const yelp = require('yelp-fusion')
