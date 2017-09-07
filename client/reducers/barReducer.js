@@ -14,12 +14,19 @@ error:''
             }
         }
           case 'BARS_FETCHED': {
-          
-                   return {...state,
+                    if(action.payload == 'no match found'){
+                        return{
+                            ...state,
+                             error:action.payload
+                        }
+                    }else{
+                return {...state,
                 fetchBars:false,
                 barsFetched:true,
                 bars:action.payload,
-                error:action.payload
+                    }
+            
+               
             }
               
            
